@@ -19,10 +19,10 @@ export class AppComponent {
   input: string = '';
   errors: number = 0;
   started: boolean = false;
-  time: number = 0;
+  time: number = 30000;
 
   constructor() {
-    this.selectWord();
+    this.selectRandomWord();
   }
   checkInput() {
     if (!this.started) {
@@ -33,13 +33,10 @@ export class AppComponent {
     if (this.currentWord != this.input) {
       this.checkErros(this.input);
     }
-    this.selectWord();
+    this.selectRandomWord();
     this.input = '';
   }
-  stopTimer() {
-    this.started = false;
-  }
-  selectWord() {
+  selectRandomWord() {
     this.currentWord =
       commonWords[Math.floor(Math.random() * commonWords.length)];
   }

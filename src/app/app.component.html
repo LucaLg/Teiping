@@ -1,4 +1,4 @@
 <h1 class="text-3xl font-bold underline">{{ currentWord }}</h1>
 <input (keydown.code.space)="checkInput()" [(ngModel)]="input" />
 <div>{{ errors }}</div>
-<app-timer />
+<app-timer [time]="time" />
