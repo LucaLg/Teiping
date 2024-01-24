@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { commonWords } from './words';
 import { FormsModule } from '@angular/forms';
+import { TimerComponent } from './timer/timer.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, FormsModule],
+  imports: [CommonModule, RouterOutlet, FormsModule, TimerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  @ViewChild(TimerComponent)
+  timerComponent!: TimerComponent;
   title = 'teiping';
   currentWord: string = '';
   input: string = '';
@@ -24,7 +27,7 @@ export class AppComponent {
   checkInput() {
     if (!this.started) {
       this.started = true;
-      this.startTimer();
+      this.timerComponent.startTimer();
     }
     this.input = this.input.trim();
     if (this.currentWord != this.input) {
@@ -32,13 +35,6 @@ export class AppComponent {
     }
     this.selectWord();
     this.input = '';
-  }
-  startTimer() {
-    setInterval(() => {
-      if (this.started) {
-        this.time++;
-      }
-    }, 1000);
   }
   stopTimer() {
     this.started = false;
