@@ -1,4 +1,11 @@
 <h1 class="text-3xl font-bold underline">{{ currentWord }}</h1>
-<input (keydown.code.space)="checkInput()" [(ngModel)]="input" />
+<input (keydown.code.space)="checkInput()" [(ngModel)]="userInput" />
 <div>{{ errors }}</div>
-<app-timer [time]="time" />
+<app-timer (timeEnd)="end()" [time]="time" />
+<app-endscreen
+  *ngIf="endScreen"
+  (restart)="restart()"
+  [errors]="errors"
+  [wordCount]="wordCount"
+  [wpm]="wpm"
+/>

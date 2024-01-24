@@ -1,4 +1,11 @@
-import { Component, DestroyRef, inject, input } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  EventEmitter,
+  Output,
+  inject,
+  input,
+} from '@angular/core';
 import { Subscription, timer } from 'rxjs';
 import { TimeFormatPipe } from '../time-format.pipe';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -16,6 +23,7 @@ export class TimerComponent {
   private timer$: Subscription = new Subscription();
   public timerValue: number = 0;
   interval = 10;
+  @Output() timeEnd = new EventEmitter<void>();
 
   startTimer() {
     this.timer$ = timer(0, 10)
@@ -24,6 +32,7 @@ export class TimerComponent {
         if (this.timerValue < this.time()) {
           this.timerValue += this.interval;
         } else {
+          this.timeEnd.emit();
           this.timer$.unsubscribe(); // Stop the timer when it reaches 60 seconds
         }
       });
