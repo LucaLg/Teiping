@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { commonWords } from './words';
@@ -22,6 +28,7 @@ export class AppComponent {
   @ViewChild(TimerComponent)
   timerComponent!: TimerComponent;
 
+  @ViewChild('input') input!: ElementRef;
   title = 'teiping';
   currentWord: string = '';
   userInput: string = '';
@@ -48,12 +55,13 @@ export class AppComponent {
     } else {
       this.wordCount++;
     }
+    this.input.nativeElement.selectionStart = 0;
+    this.input.nativeElement.selectionEnd = 0;
     this.selectRandomWord();
     this.userInput = '';
   }
 
   selectRandomWord() {
-    console.log(this.currentWord);
     this.currentWord =
       commonWords[Math.floor(Math.random() * commonWords.length)];
   }
