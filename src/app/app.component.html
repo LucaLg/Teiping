@@ -1,11 +1,15 @@
-<h1 class="text-3xl font-bold underline">{{ currentWord }}</h1>
-<input (keydown.code.space)="checkInput()" [(ngModel)]="userInput" />
-<div>{{ errors }}</div>
-<app-timer (timeEnd)="end()" [time]="time" />
-<app-endscreen
-  *ngIf="endScreen"
-  (restart)="restart()"
-  [errors]="errors"
-  [wordCount]="wordCount"
-  [wpm]="wpm"
-/>
+<div class="w-full h-screen flex flex-col justify-center items-center">
+  <section>
+    <h1 class="text-3xl font-bold underline">{{ currentWord }}</h1>
+    <input (keydown.code.space)="checkInput()" [(ngModel)]="userInput" />
+  </section>
+  <div>{{ errors }}</div>
+  <app-timer (timeEnd)="end()" [time]="time" />
+  <app-endscreen
+    *ngIf="endScreen"
+    (restart)="restart()"
+    [errors]="errors"
+    [wordCount]="wordCount"
+    [wpm]="wpm"
+  />
+</div>
