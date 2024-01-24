@@ -18,8 +18,7 @@ import { EndscreenComponent } from './endscreen/endscreen.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements AfterViewInit {
-  @ViewChild('inputElement', { static: false }) inputElement!: ElementRef;
+export class AppComponent {
   @ViewChild(TimerComponent)
   timerComponent!: TimerComponent;
 
@@ -38,9 +37,6 @@ export class AppComponent implements AfterViewInit {
   constructor() {
     this.selectRandomWord();
   }
-  ngAfterViewInit(): void {
-    this.inputElement.nativeElement.focus();
-  }
   checkInput() {
     if (!this.started) {
       this.started = true;
@@ -57,12 +53,13 @@ export class AppComponent implements AfterViewInit {
   }
 
   selectRandomWord() {
+    console.log(this.currentWord);
     this.currentWord =
       commonWords[Math.floor(Math.random() * commonWords.length)];
   }
 
   checkErros(input: string) {
-    for (let i = 0; i < input.length; i++) {
+    for (let i = 0; i < this.currentWord.length; i++) {
       if (input[i] !== this.currentWord[i]) {
         this.errors++;
       }

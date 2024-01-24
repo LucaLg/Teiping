@@ -1,7 +1,15 @@
 <div class="w-full h-screen flex flex-col justify-center items-center">
-  <section>
-    <h1 class="text-3xl font-bold underline">{{ currentWord }}</h1>
-    <input (keydown.code.space)="checkInput()" [(ngModel)]="userInput" />
+  <section class="relative">
+    <div
+      class="absolute h-24 p-0 top-0 left-0 text-4xl font-semibold text-black"
+    >
+      {{ currentWord }}
+    </div>
+    <input
+      class="absolute h-24 p-0 top-0 bg-transparent border left-0 text-4xl font-semibold text-white"
+      (keydown.code.space)="checkInput()"
+      [(ngModel)]="userInput"
+    />
   </section>
   <div>{{ errors }}</div>
   <app-timer (timeEnd)="end()" [time]="time" />
