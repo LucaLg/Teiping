@@ -35,7 +35,7 @@ export class AppComponent {
   wpm: number = 0;
   wordCount: number = 0;
 
-  time: number = 30000;
+  time: number = 3000;
 
   constructor() {
     this.selectRandomWord();

@@ -1,4 +1,7 @@
-<div class="w-full h-screen flex flex-row justify-evenly items-center">
+<div
+  [ngClass]="{ 'bg-black bg-opacity-50': endScreen }"
+  class="w-full h-screen flex flex-row justify-evenly items-center"
+>
   <app-error-widget [errors]="errors" />
   <div class="grid grid-cols-1 grid-rows-1 h-10">
     <label
@@ -16,11 +19,12 @@
     />
   </div>
   <app-timer (timeEnd)="end()" [time]="time" />
-  <app-endscreen
-    *ngIf="endScreen"
-    (restart)="restart()"
-    [errors]="errors"
-    [wordCount]="wordCount"
-    [wpm]="wpm"
-  />
 </div>
+
+<app-endscreen
+  *ngIf="endScreen"
+  (restart)="restart()"
+  [errors]="errors"
+  [wordCount]="wordCount"
+  [wpm]="wpm"
+/>

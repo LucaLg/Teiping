@@ -5,13 +5,27 @@ import { Component, EventEmitter, Output, input } from '@angular/core';
   standalone: true,
   imports: [],
   template: `
-    <h1>End screen</h1>
-    <p>Errors: {{ errors() }}</p>
-    <p>Word count: {{ wordCount() }}</p>
-    <p>WPM: {{ wpm() }}</p>
-    <button (click)="restart.emit()">Restart</button>
+    <section
+      class=" flex flex-col justify-evenly items-center outline-2 rounded-md shadow-lg "
+    >
+      <h1>Sie haben folgende Daten erreicht</h1>
+      <p>Fehler: {{ errors() }}</p>
+      <p>Wortanzahl: {{ wordCount() }}</p>
+      <p>WPM: {{ wpm() }}</p>
+      <button (click)="restart.emit()">Restart</button>
+    </section>
   `,
-  styles: ``,
+  styles: `
+  :host {
+    position: absolute;
+    background: #fff;
+    z-index: 100;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+
+  }
+  `,
 })
 export class EndscreenComponent {
   @Output() restart = new EventEmitter<void>();
