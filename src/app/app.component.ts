@@ -5,6 +5,7 @@ import { commonWords } from './words';
 import { FormsModule } from '@angular/forms';
 import { TimerComponent } from './timer/timer.component';
 import { EndscreenComponent } from './endscreen/endscreen.component';
+import { ErrorWidgetComponent } from './error-widget/error-widget.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -14,6 +15,7 @@ import { EndscreenComponent } from './endscreen/endscreen.component';
     FormsModule,
     TimerComponent,
     EndscreenComponent,
+    ErrorWidgetComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

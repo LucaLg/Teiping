@@ -1,10 +1,5 @@
 <div class="w-full h-screen flex flex-row justify-evenly items-center">
-  <div
-    class="items-center gap-3 font-geist text-4xl rounded-md border bg-gray-300 p-2 flex flex-col justify-evenly"
-  >
-    <span>Fehler</span>
-    <span>{{ errors }}</span>
-  </div>
+  <app-error-widget [errors]="errors" />
   <div class="grid grid-cols-1 grid-rows-1 h-10">
     <label
       for="input"
