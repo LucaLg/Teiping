@@ -6,7 +6,7 @@ import { Component, EventEmitter, Output, input } from '@angular/core';
   imports: [],
   template: `
     <section
-      class=" flex flex-col justify-evenly items-center outline-2 rounded-md shadow-lg "
+      class=" flex flex-col items-center justify-evenly rounded-md bg-white p-4 shadow-lg outline-2 "
     >
       <h1>Sie haben folgende Daten erreicht</h1>
       <p>Fehler: {{ errors() }}</p>
@@ -15,16 +15,17 @@ import { Component, EventEmitter, Output, input } from '@angular/core';
       <button (click)="restart.emit()">Restart</button>
     </section>
   `,
-  styles: `
-  :host {
-    position: absolute;
-    background: #fff;
-    z-index: 100;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%)
-
-  }
+  styles: `:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
   `,
 })
 export class EndscreenComponent {
