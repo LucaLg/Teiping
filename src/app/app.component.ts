@@ -65,9 +65,16 @@ export class AppComponent {
     this.currentWord =
       commonWords[Math.floor(Math.random() * commonWords.length)];
   }
-
+  /**
+   * Checks the difference between the currentWord and the user input
+   * @param input is the user input for given currentWords
+   */
   checkErros(input: string) {
-    for (let i = 0; i < this.currentWord.length; i++) {
+    const maxLength =
+      input.length > this.currentWord.length
+        ? this.currentWord.length
+        : input.length;
+    for (let i = 0; i < maxLength; i++) {
       if (input[i] !== this.currentWord[i]) {
         this.errors++;
       }

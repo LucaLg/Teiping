@@ -24,6 +24,23 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, teiping');
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'Hello, teiping'
+    );
+  });
+  it('should test if errors are counted correctly', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    app.currentWord = 'test';
+    app.userInput = 'tes';
+    app.checkErros(app.userInput);
+
+    expect(app.errors).toEqual(1);
+
+    //Add more testcases here
+    app.currentWord = 'test';
+    app.userInput = 'test';
+    app.checkErros(app.userInput);
+    expect(app.errors).toEqual(0);
   });
 });
