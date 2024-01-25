@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Share Tech Mono";
+  src: url(./assets/fonts/ShareTechMono-Regular.ttf);
+}
+@font-face {
+  font-family: "Geist";
+  src: url(./assets/fonts/Geist-Regular.otf);
+}
 * {
   box-sizing: border-box;
   position: relative;

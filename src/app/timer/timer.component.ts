@@ -14,7 +14,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   selector: 'app-timer',
   standalone: true,
   imports: [TimeFormatPipe],
-  template: ` <p class="font-mono">{{ timerValue | timeFormat }}</p> `,
+  template: ` <p class="font-tech text-xl">{{ timerValue | timeFormat }}</p> `,
   styles: ``,
 })
 export class TimerComponent {
