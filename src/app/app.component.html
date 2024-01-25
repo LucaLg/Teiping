@@ -1,19 +1,20 @@
 <div
   [ngClass]="{ 'bg-black bg-opacity-50': endScreen }"
-  class="w-full h-screen flex flex-row justify-evenly items-center"
+  class="flex h-screen w-full flex-row items-center justify-evenly"
 >
   <app-error-widget [errors]="errors" />
-  <div class="grid grid-cols-1 grid-rows-1 h-10">
+  <div class="grid h-10 grid-cols-1 grid-rows-1">
     <label
       for="input"
-      class="font-tech text-center w-min col-start-1 col-end-2 row-start-1 row-end-2 font-mono leading-10 h-10 p-0 text-4xl tracking-wide font-semibold text-black"
+      class="font-mono col-start-1 col-end-2 row-start-1 row-end-2 h-10 w-min rounded-md p-0 text-center font-tech text-4xl font-semibold leading-10 tracking-wide text-black outline-4"
     >
       {{ currentWord }}
     </label>
     <input
       #input
       id="input"
-      class="font-tech text-left w-min focus:outline-none tracking-wide col-start-1 col-end-2 row-start-1 row-end-2 caret-transparent font-mono z-10 leading-10 h-10 p-0 bg-transparent text-4xl font-bold text-white"
+      [disabled]="endScreen"
+      class="font-mono z-10 col-start-1 col-end-2 row-start-1 row-end-2 h-10 w-min bg-transparent p-0 text-left font-tech text-4xl font-bold leading-10 tracking-wide text-white caret-transparent focus:outline-none"
       (keydown.code.space)="$event.preventDefault(); checkInput()"
       [(ngModel)]="userInput"
     />

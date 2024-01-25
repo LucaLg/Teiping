@@ -88,5 +88,6 @@ export class AppComponent {
     this.wpm = 0;
     this.wordCount = 0;
     this.timerComponent.timerValue = 0;
+    this.selectRandomWord();
   }
 }
