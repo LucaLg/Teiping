@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { commonWords } from './words';
@@ -20,7 +20,7 @@ import { ErrorWidgetComponent } from './error-widget/error-widget.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   @ViewChild(TimerComponent)
   timerComponent!: TimerComponent;
 
@@ -39,6 +39,9 @@ export class AppComponent {
 
   constructor() {
     this.selectRandomWord();
+  }
+  ngAfterViewInit(): void {
+    this.input.nativeElement.focus();
   }
   checkInput() {
     if (!this.started) {
@@ -90,7 +93,7 @@ export class AppComponent {
     this.timerComponent.timerValue = 0;
     this.userInput = '';
     this.input.nativeElement.selectionStart = 0;
-    this.input.nativeElement.focus();
     this.selectRandomWord();
+    this.input.nativeElement.focus();
   }
 }
