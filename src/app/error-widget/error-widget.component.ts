@@ -6,10 +6,10 @@ import { Component, effect, input } from '@angular/core';
   imports: [],
   template: `
     <div
-      class="flex flex-col items-center justify-evenly gap-3 rounded-md border bg-gray-300 p-2 font-geist text-4xl"
+      class="flex flex-col items-center justify-evenly gap-3 rounded-md border-black bg-gray-400 p-4  shadow-lg"
     >
-      <span>Fehler</span>
-      <span>{{ displayedErrors }}</span>
+      <p class="font-geist tracking-wider">Errors</p>
+      <p class="font-tech text-4xl">{{ displayedErrors }}</p>
     </div>
   `,
   styles: ``,
