@@ -30,18 +30,13 @@ import { WordService } from './word.service';
 export class AppComponent implements AfterViewInit {
   @ViewChild(TimerComponent)
   timerComponent!: TimerComponent;
-
   @ViewChild('input') input!: ElementRef;
+
   title = 'teiping';
   wordService = inject(WordService);
-  currentWord: string = '';
-  userInput: string = '';
 
-  errors: number = 0;
   started: boolean = false;
   endScreen = false;
-  wpm: number = 0;
-  wordCount: number = 0;
 
   time: number = 3000;
 
@@ -56,26 +51,7 @@ export class AppComponent implements AfterViewInit {
     }
     this.input.nativeElement.selectionStart = 0;
     this.input.nativeElement.selectionEnd = 0;
-    this.wordService.userInput.set(this.userInput.trim());
-    console.log(this.wordService.userInput());
     this.wordService.checkInput();
-    this.userInput = '';
-  }
-
-  /**
-   * Checks the difference between the currentWord and the user input
-   * @param input is the user input for given currentWords
-   */
-  checkErros(input: string) {
-    const maxLength =
-      input.length > this.currentWord.length
-        ? this.currentWord.length
-        : input.length;
-    for (let i = 0; i < maxLength; i++) {
-      if (input[i] !== this.currentWord[i]) {
-        this.errors++;
-      }
-    }
   }
 
   end() {
@@ -88,8 +64,7 @@ export class AppComponent implements AfterViewInit {
     this.endScreen = false;
     this.timerComponent.timerValue = 0;
     this.input.nativeElement.selectionStart = 0;
-    this.userInput = '';
-    this.wordService.reset();
     this.input.nativeElement.focus();
+    this.wordService.reset();
   }
 }
