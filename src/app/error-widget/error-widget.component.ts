@@ -1,4 +1,5 @@
-import { Component, effect, input } from '@angular/core';
+import { Component, effect, inject, input } from '@angular/core';
+import { WordService } from '../word.service';
 
 @Component({
   selector: 'app-error-widget',
@@ -15,12 +16,12 @@ import { Component, effect, input } from '@angular/core';
   styles: ``,
 })
 export class ErrorWidgetComponent {
-  errors = input.required<number>();
+  wordService = inject(WordService);
   displayedErrors = 0;
   constructor() {
     effect(() => {
       setInterval(() => {
-        if (this.displayedErrors < this.errors()) {
+        if (this.displayedErrors < this.wordService.errors()) {
           this.displayedErrors++;
         }
       }, 100);

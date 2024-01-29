@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output, input } from '@angular/core';
+import { Component, EventEmitter, Output, inject, input } from '@angular/core';
+import { WordService } from '../word.service';
 
 @Component({
   selector: 'app-endscreen',
@@ -9,9 +10,9 @@ import { Component, EventEmitter, Output, input } from '@angular/core';
       class=" flex flex-col items-center justify-evenly rounded-md bg-white p-4 shadow-lg outline-2 "
     >
       <h1>Sie haben folgende Daten erreicht</h1>
-      <p>Fehler: {{ errors() }}</p>
-      <p>Wortanzahl: {{ wordCount() }}</p>
-      <p>WPM: {{ wpm() }}</p>
+      <p>Fehler: {{ wordService.errors() }}</p>
+      <p>Wortanzahl: {{ wordService.wordCount() }}</p>
+      <p>WPM: {{ wordService.wpm() }}</p>
       <button (click)="restart.emit()">Restart</button>
     </section>
   `,
@@ -30,7 +31,5 @@ import { Component, EventEmitter, Output, input } from '@angular/core';
 })
 export class EndscreenComponent {
   @Output() restart = new EventEmitter<void>();
-  errors = input.required<number>();
-  wordCount = input.required<number>();
-  wpm = input.required<number>();
+  wordService = inject(WordService);
 }

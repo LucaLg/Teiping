@@ -1,5 +1,5 @@
 <div
-  class="flex h-screen w-full flex-col bg-gradient-to-b from-slate-500 to-slate-400 pt-12"
+  class="flex h-screen w-full flex-col bg-gradient-to-b from-black to-gray-900 pt-12"
 >
   <section class="flex flex-row justify-center">
     @if (!started) {
@@ -14,7 +14,7 @@
     }
   </section>
   <section class="flex w-1/4 flex-row gap-4 sm:justify-center md:justify-end">
-    <app-error-widget [errors]="errors" />
+    <app-error-widget />
     <app-timer (timeEnd)="end()" [time]="time" />
   </section>
   <section class="flex flex-row justify-evenly">
@@ -22,17 +22,17 @@
       <div class="grid h-24 grid-cols-1 grid-rows-1">
         <label
           for="input"
-          class="font-mono col-start-1 col-end-2 row-start-1 row-end-2 flex h-24 items-center justify-center rounded-md p-0 text-center font-tech text-4xl font-semibold leading-10 tracking-wide text-black outline-2 outline-black"
+          class="font-mono col-start-1 col-end-2 row-start-1 row-end-2 flex h-24 items-center justify-center rounded-md p-0 text-center font-tech text-4xl font-semibold leading-10 tracking-wide text-slate-300 outline-dashed outline-2 outline-white"
         >
           <span>
-            {{ currentWord }}
+            {{ wordService.currentWord() }}
           </span>
         </label>
         <input
           #input
           id="input"
           [disabled]="endScreen"
-          class="font-mono z-10 col-start-1 col-end-2 row-start-1 row-end-2 h-24 bg-transparent p-0 text-center font-tech text-4xl font-bold leading-10 tracking-wide text-white caret-black outline-2 outline-black"
+          class="font-mono z-10 col-start-1 col-end-2 row-start-1 row-end-2 h-24 rounded-md bg-transparent p-0 text-center font-tech text-4xl font-bold leading-10 tracking-wide text-white caret-black outline-dotted outline-2 focus:outline-none"
           (keydown.code.space)="$event.preventDefault(); checkInput()"
           [(ngModel)]="userInput"
         />
@@ -41,10 +41,4 @@
   </section>
 </div>
 
-<app-endscreen
-  *ngIf="endScreen"
-  (restart)="restart()"
-  [errors]="errors"
-  [wordCount]="wordCount"
-  [wpm]="wpm"
-/>
+<app-endscreen *ngIf="endScreen" (restart)="restart()" />
