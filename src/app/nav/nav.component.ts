@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-nav',
@@ -12,7 +13,7 @@ import { Component } from '@angular/core';
         class="flex h-8 w-8 items-center justify-center rounded-full bg-white "
       >
         <button (click)="toggleMode()">
-          @if (theme === 'light') {
+          @if (themeService.theme() === 'light') {
             <img src="../assets/icons/half-moon.svg" alt="Black" />
           } @else {
             <img src="../assets/icons/sun-light.svg" alt="Light" />
@@ -24,7 +25,8 @@ import { Component } from '@angular/core';
   styles: ``,
 })
 export class NavComponent {
-  theme = localStorage.getItem('theme');
+  themeService = inject(ThemeService);
+
   toggleMode() {
     if (localStorage.getItem('theme') === 'light') {
       document.documentElement.classList.add('dark');
@@ -34,6 +36,6 @@ export class NavComponent {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');
     }
-    this.theme = localStorage.getItem('theme');
+    this.themeService.theme.set(localStorage.getItem('theme')!);
   }
 }

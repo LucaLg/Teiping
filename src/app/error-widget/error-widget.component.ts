@@ -24,6 +24,9 @@ export class ErrorWidgetComponent {
         if (this.displayedErrors < this.wordService.errors()) {
           this.displayedErrors++;
         }
+        if (this.displayedErrors > this.wordService.errors()) {
+          this.displayedErrors = 0;
+        }
       }, 100);
     });
   }

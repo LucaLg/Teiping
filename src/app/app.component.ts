@@ -15,6 +15,7 @@ import { EndscreenComponent } from './endscreen/endscreen.component';
 import { ErrorWidgetComponent } from './error-widget/error-widget.component';
 import { WordService } from './word.service';
 import { NavComponent } from './nav/nav.component';
+import { ThemeService } from './theme.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -30,13 +31,14 @@ import { NavComponent } from './nav/nav.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements AfterViewInit {
   @ViewChild(TimerComponent)
   timerComponent!: TimerComponent;
   @ViewChild('input') input!: ElementRef;
 
   title = 'teiping';
   wordService = inject(WordService);
+  themeService = inject(ThemeService);
 
   started: boolean = false;
   endScreen = false;
@@ -44,23 +46,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   time: number = 3000;
 
   constructor() {}
-  ngOnInit(): void {
-    if (localStorage.getItem('theme') === null) {
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
-    } else {
-      if (localStorage.getItem('theme') === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    }
-  }
   ngAfterViewInit(): void {
     this.input.nativeElement.focus();
   }
