@@ -7,7 +7,7 @@ import { WordService } from '../word.service';
   imports: [],
   template: `
     <div
-      class="flex flex-col items-center justify-evenly gap-3 rounded-md border-black bg-gray-400 p-4  shadow-lg"
+      class="flex flex-col items-center justify-evenly gap-3 rounded-md  p-4 shadow-lg  outline-dotted outline-2 dark:bg-black  dark:text-white  dark:outline-white"
     >
       <p class="font-geist tracking-wider">Errors</p>
       <p class="font-tech text-4xl">{{ displayedErrors }}</p>

@@ -1,16 +1,21 @@
+<app-nav />
 <div
-  class="flex h-screen w-full flex-col bg-gradient-to-b from-black to-gray-900 pt-12"
+  class="flex h-screen w-full flex-col bg-gradient-to-b pt-12 dark:from-black dark:to-gray-900"
 >
   <section class="flex flex-row justify-center">
     @if (!started) {
       <p
         [ngClass]="{ visible: !started, invisible: started }"
-        class="font-geist text-4xl font-bold"
+        class="font-geist text-4xl font-bold text-black dark:text-white"
       >
         Type and press space to start!
       </p>
     } @else {
-      <p class="font-geist text-4xl font-bold tracking-wider">Teiping</p>
+      <p
+        class="font-geist text-4xl font-bold tracking-wider text-black dark:text-black"
+      >
+        Teiping
+      </p>
     }
   </section>
   <section class="flex w-1/4 flex-row gap-4 sm:justify-center md:justify-end">
@@ -22,7 +27,7 @@
       <div class="grid h-24 grid-cols-1 grid-rows-1">
         <label
           for="input"
-          class="font-mono col-start-1 col-end-2 row-start-1 row-end-2 flex h-24 items-center justify-center rounded-md p-0 text-center font-tech text-4xl font-semibold leading-10 tracking-wide text-slate-300 outline-dashed outline-2 outline-white"
+          class="font-mono col-start-1 col-end-2 row-start-1 row-end-2 flex h-24 items-center justify-center rounded-md p-0 text-center font-tech text-4xl font-semibold leading-10 tracking-wide outline-dashed outline-2 dark:text-slate-300 dark:outline-white"
         >
           <span>
             {{ wordService.currentWord() }}
@@ -32,7 +37,7 @@
           #input
           id="input"
           [disabled]="endScreen"
-          class="font-mono z-10 col-start-1 col-end-2 row-start-1 row-end-2 h-24 rounded-md bg-transparent p-0 text-center font-tech text-4xl font-bold leading-10 tracking-wide text-white caret-black outline-dotted outline-2 focus:outline-none"
+          class="font-mono z-10 col-start-1 col-end-2 row-start-1 row-end-2 h-24 rounded-md bg-transparent p-0 text-center font-tech text-4xl font-bold leading-10 tracking-wide outline-dotted outline-2 focus:outline-none dark:text-white dark:caret-black"
           (keydown.code.space)="$event.preventDefault(); checkInput()"
           [ngModel]="wordService.userInput()"
           (ngModelChange)="wordService.userInput.set($event)"

@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  OnInit,
   ViewChild,
   inject,
 } from '@angular/core';
@@ -13,6 +14,7 @@ import { TimerComponent } from './timer/timer.component';
 import { EndscreenComponent } from './endscreen/endscreen.component';
 import { ErrorWidgetComponent } from './error-widget/error-widget.component';
 import { WordService } from './word.service';
+import { NavComponent } from './nav/nav.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -23,11 +25,12 @@ import { WordService } from './word.service';
     TimerComponent,
     EndscreenComponent,
     ErrorWidgetComponent,
+    NavComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild(TimerComponent)
   timerComponent!: TimerComponent;
   @ViewChild('input') input!: ElementRef;
@@ -41,6 +44,23 @@ export class AppComponent implements AfterViewInit {
   time: number = 3000;
 
   constructor() {}
+  ngOnInit(): void {
+    if (localStorage.getItem('theme') === null) {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    } else {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+  }
   ngAfterViewInit(): void {
     this.input.nativeElement.focus();
   }
