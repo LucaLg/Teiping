@@ -7,13 +7,34 @@ import { WordService } from '../word.service';
   imports: [],
   template: `
     <section
-      class=" flex flex-col items-center justify-evenly rounded-md bg-white p-4 shadow-lg outline-2 "
+      class=" flex w-2/5 flex-col items-center justify-evenly gap-4 rounded-md bg-white  p-8 shadow-lg  outline-2"
     >
-      <h1>Sie haben folgende Daten erreicht</h1>
-      <p>Fehler: {{ wordService.errors() }}</p>
-      <p>Wortanzahl: {{ wordService.wordCount() }}</p>
-      <p>WPM: {{ wordService.wpm() }}</p>
-      <button (click)="restart.emit()">Restart</button>
+      <section class="flex w-full flex-row justify-evenly">
+        <div>
+          <span class="font-geist text-2xl">Fehler:</span>
+          <span class="font-tech text-2xl"> {{ wordService.errors() }}</span>
+        </div>
+        <div>
+          <span class="font-geist text-2xl">Wortanzahl:</span>
+          <span class="font-tech text-2xl">
+            {{ wordService.wordCount() }}
+          </span>
+        </div>
+        <div>
+          <span class="font-geist text-2xl">WPM:</span>
+          <span class="font-tech text-2xl">
+            {{ wordService.wpm() }}
+          </span>
+        </div>
+      </section>
+      <section>
+        <button
+          class="flex size-16 items-center justify-center  rounded-full outline outline-black"
+          (click)="restart.emit()"
+        >
+          <img src="../assets/icons/restart.svg" alt="Restart" />
+        </button>
+      </section>
     </section>
   `,
   styles: `:host {

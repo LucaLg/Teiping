@@ -16,7 +16,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   imports: [TimeFormatPipe],
   template: `
     <div
-      class="text-whitel flex flex-col items-center justify-evenly gap-3 rounded-md p-4 outline-dotted outline-2 dark:bg-black dark:text-white dark:outline-white  "
+      class="text-whitel flex flex-col items-center justify-evenly gap-3 rounded-md p-4 shadow-lg outline-dotted outline-2 dark:bg-black dark:text-white dark:shadow-sm dark:shadow-white dark:outline-white  "
     >
       <p class="font-geist  tracking-wider">Time</p>
       <p class="font-tech text-4xl">{{ timerValue | timeFormat }}</p>
