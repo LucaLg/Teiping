@@ -40,6 +40,7 @@ import { WordService } from '../word.service';
   styles: `:host {
   display: flex;
   justify-content: center;
+  z-index:100;
   align-items: center;
   position: fixed;
   top: 0;

@@ -18,9 +18,12 @@
       </p>
     }
   </section>
-  <section class="flex w-1/4 flex-row gap-4 sm:justify-center md:justify-end">
-    <app-error-widget />
-    <app-timer (timeEnd)="end()" [time]="time" />
+  <section class="flex w-1/4 flex-col items-center gap-4">
+    <div class="flex flex-row gap-4">
+      <app-error-widget />
+      <app-timer (timeEnd)="end()" [time]="wordService.time()" />
+    </div>
+    <app-time-radio />
   </section>
   <section class="flex flex-row justify-evenly">
     <div class="flex min-h-52 flex-col gap-5">

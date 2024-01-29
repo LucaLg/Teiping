@@ -4,6 +4,7 @@ import {
   ElementRef,
   OnInit,
   ViewChild,
+  effect,
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,6 +17,7 @@ import { ErrorWidgetComponent } from './error-widget/error-widget.component';
 import { WordService } from './word.service';
 import { NavComponent } from './nav/nav.component';
 import { ThemeService } from './theme.service';
+import { TimeRadioComponent } from './time-radio/time-radio.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -27,6 +29,7 @@ import { ThemeService } from './theme.service';
     EndscreenComponent,
     ErrorWidgetComponent,
     NavComponent,
+    TimeRadioComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -42,8 +45,6 @@ export class AppComponent implements AfterViewInit {
 
   started: boolean = false;
   endScreen = false;
-
-  time: number = 3000;
 
   constructor() {}
   ngAfterViewInit(): void {
@@ -62,7 +63,9 @@ export class AppComponent implements AfterViewInit {
   end() {
     this.endScreen = true;
     this.wordService.wpm.set(
-      Math.round((this.wordService.wordCount() / this.time) * 60000),
+      Math.round(
+        (this.wordService.wordCount() / this.wordService.time()) * 60000,
+      ),
     );
   }
   restart() {

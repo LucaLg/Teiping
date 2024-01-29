@@ -11,6 +11,7 @@ export class WordService {
   currentWord = signal<string>('');
   userInput = signal<string>('');
   started = signal<boolean>(false);
+  time = signal<number>(3000);
   constructor() {
     this.selectRandomWord();
   }
