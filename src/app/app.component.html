@@ -18,12 +18,16 @@
       </p>
     }
   </section>
-  <section class="flex w-1/4 flex-col items-center gap-4">
+  <section
+    class="flex min-h-48 w-full flex-col items-center gap-4 px-10 md:items-start"
+  >
     <div class="flex flex-row gap-4">
       <app-error-widget />
       <app-timer (timeEnd)="end()" [time]="wordService.time()" />
     </div>
-    <app-time-radio />
+    @if (!wordService.started()) {
+      <app-time-radio />
+    }
   </section>
   <section class="flex flex-row justify-evenly">
     <div class="flex min-h-52 flex-col gap-5">
