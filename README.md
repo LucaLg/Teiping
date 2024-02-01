@@ -24,3 +24,5 @@ Oder mit dem Dockerfile:
 docker build -t teiping .
 docker run -d -p 80:80 teiping
 ```
+
+Icons von [https://iconoir.com/] https://iconoir.com/
